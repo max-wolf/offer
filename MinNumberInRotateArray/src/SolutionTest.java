@@ -7,13 +7,8 @@ public class SolutionTest {
 
 	@Test
 	public void testMinNumberInRotateArray() {
-		int[] array = {1,0,1,1,1};
-		assertEquals(0, slt.minNumberInRotateArray(array));
-	}
-
-	@Test
-	public void testSequentialSearch() {
-		
+		int[] array = {3,4,5,1,2};
+		assertEquals(1, slt.minNumberInRotateArray(array));
 	}
 
 }

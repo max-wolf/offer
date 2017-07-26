@@ -11,30 +11,22 @@ public class Solution {
 		int i = 0;
 		int j = len - 1;
 		int mid = i;
-		while(array[i] >= array[j]) {
-			if(j - i == 1){
-				mid = j;
-				break;
-			}
+		while(i < j) {
 			mid = (i + j) / 2;
-			if(array[i] == array [mid] && array[mid] == array[j]) {
-				return sequentialSearch(array, i, j);
-			}
-			if(array[mid] > array[i]) {
+			if(array[i] == array[mid] && array[mid] == array[j]) {
+				int min = array[0];
+                for(int k = 1; k < len; k++) {
+                    if(min > array[k]) {
+                        min = array[k];
+                    }
+                }
+                return min;
+			} else if(array[mid] > array[i]) {
 				i = mid;
-			} else if(array[mid] < array[j]) {
+			} else {
 				j = mid;
 			}
 		}
-		return array[mid];
-	}
-	
-	int sequentialSearch(int[] array, int i, int j) {
-		int min = array[i];
-		for(int k = i+1; k <= j; k++) {
-			if(min > array[k])
-				min = array[k];
-		}
-		return min;
+		return array[mid+1];
 	}
 }
