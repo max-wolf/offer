@@ -4,26 +4,21 @@ import java.util.*;
 
 public class Bracket {
 	public static List<String> generateParenthesis(int n) {
-		//Set<String> res = new HashSet<String>();
-		List<String> res = new LinkedList<>();
-        if (n == 0) {
-            res.add("");
-        } else {
-            List<String> pre = generateParenthesis(n - 1);
-            for (String str : pre) {
-                for (int i = 0; i < str.length(); ++i) {
-                    if (str.charAt(i) == '(') {
-                        str = str.substring(0, i + 1) + "()" + str.substring(i + 1, str.length());
-                        res.add(str);
-                        str = str.substring(0, i + 1) +  str.substring(i + 3, str.length());
-                    }
-                }
-                res.add("()" + str);
-            }
-        }
-        //return new ArrayList(res);
-        return res;
-    }
+		List<String> res = new ArrayList<String>();
+		helper(n, n, "", res);
+		return res;
+	}
+
+	static void helper(int left, int right, String out, List<String> res) {
+		if (left < 0 || right < 0 || left > right)
+			return;
+		if (left == 0 && right == 0) {
+			res.add(out);
+			return;
+		}
+		helper(left - 1, right, out + "(", res);
+		helper(left, right - 1, out + ")", res);
+	}
 	
 	public static int compute(String s1, String s2)
     {
